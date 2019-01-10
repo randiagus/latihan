@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <!-- include lokasi_file :: nama_fragment-->
+    <div th:include="fragments/head :: head" th:remove="tag"></div>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <div th:include="fragments/header :: header" th:remove="tag"></div>
+    <!-- Left side column. contains the logo and sidebar -->
+    <div th:include="fragments/sidebar :: sidebar" th:remove="tag"></div>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!--terdapat 2 section, yaitu : content-header & content-->
+        <div layout:fragment="content" th:remove="tag"></div>
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div th:include="fragments/footer :: footer" th:remove="tag"></div>
+
+    <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<div th:include="fragments/javascript :: javascript" th:remove="tag"></div>
+</body>
+</html>

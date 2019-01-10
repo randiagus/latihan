@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}"
+      th:with="activeTab='RUANGAN'">
+<head>
+    <meta charset="UTF-8"/>
+    <title>List Ruangan</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                List
+                <small>List Ruangan</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a><i class="fa fa-dashboard"></i> Ruangan</a></li>
+                <li>List</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+              <div class="col-md-12">
+                  <a th:href="@{/ruangan/form}" class="btn btn-primary">Tambah ruangan</a>
+                  <br><br>
+                  alter table user add constraint UK_sb8bbouer5wak8vyiiy4pf2bx unique (username);
+                  <div class="panel panel-default">
+                      <div class="panel-body">
+                          <form th:action="@{/ruangan/list}" method="get">
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <input type="text" name="kode" th:value="${param.kode}" class="form-control">
+                                      </div>
+                                  </div>
+                                  <div class="col-md-3">
+                                      <div class="form-group">
+                                          <button type="submit" class="btn btn-primary">Search</button>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-3">
+                                      <div class="form-group">
+                                          <button type="submit" name="export" class="btn btn-primary">Export</button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </form>
+                          <br>
+                          <div class="table-responsive">
+                              <table class="table table-bordered">
+                                  <tr>
+                                      <th>Kode Ruangan</th>
+                                      <th>Aksi</th>
+                                  </tr>
+                                  <tr th:each="data : ${datas}">
+                                      <td th:text="${data.kodeRuangan}">002</td>
+                                      <td>
+                                          <a th:href="@{/ruangan/form(id = ${data.id})}" class="btn btn-primary">Edit</a>
+                                          <a th:href="@{/ruangan/delete/} + ${data.id}" class="btn btn-danger">Delete</a>
+                                      </td>
+                                  </tr>
+                              </table>
+                          </div>
+                      </div>
+                      <div class="panel-footer">
+                          <div class="text-center" th:if="${not #lists.isEmpty(datas.content) and datas.totalPages &gt; 1}">
+                              <nav>
+                                  <ul class="pagination" sd:pagination="full">
+                                  </ul>
+                              </nav>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </section>
+    </div>
+<!-- /.conten -->
+</body>
+</html>
