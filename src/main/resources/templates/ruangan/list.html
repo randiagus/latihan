@@ -29,8 +29,8 @@
                   alter table user add constraint UK_sb8bbouer5wak8vyiiy4pf2bx unique (username);
                   <div class="panel panel-default">
                       <div class="panel-body">
-                          <form th:action="@{/ruangan/list}" method="get">
-                              <div class="row">
+                          <div class="row">
+                              <form th:action="@{/ruangan/list}" method="get">
                                   <div class="col-md-6">
                                       <div class="form-group">
                                           <input type="text" name="kode" th:value="${param.kode}" class="form-control">
@@ -46,8 +46,22 @@
                                           <button type="submit" name="export" class="btn btn-primary">Export</button>
                                       </div>
                                   </div>
-                              </div>
-                          </form>
+                              </form>
+                          </div>
+                          <div class="row">
+                               <form th:action="@{/ruangan/import}" method="post" enctype="multipart/form-data">
+                                   <div class="col-md-6">
+                                       <div class="form-group">
+                                          <input type="file" name="file" class="form-control">
+                                       </div>
+                                   </div>
+                                   <div class="col-md-3">
+                                      <div class="form-group">
+                                          <button type="submit" class="btn btn-primary">Import</button>
+                                      </div>
+                                   </div>
+                               </form>
+                          </div>
                           <br>
                           <div class="table-responsive">
                               <table class="table table-bordered">

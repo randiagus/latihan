@@ -2,6 +2,7 @@ package com.artivisi.kampus.latihan.controller;
 
 import com.artivisi.kampus.latihan.dao.RuanganDao;
 import com.artivisi.kampus.latihan.entity.Ruangan;
+import com.artivisi.kampus.latihan.service.RuanganCsvService;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.supercsv.io.CsvMapWriter;
 import org.supercsv.prefs.CsvPreference;
 
@@ -25,6 +27,8 @@ public class RuanganController {
 
     @Autowired
     private RuanganDao ruanganDao;
+
+    @Autowired private RuanganCsvService ruanganCsvService;
 
     @GetMapping("/ruangan/list")
     public String showList(ModelMap modelMap,
@@ -81,6 +85,12 @@ public class RuanganController {
     public String deleteRuangan(@PathVariable String id){
         Ruangan ruangan = ruanganDao.findById(id).get();
         ruanganDao.delete(ruangan);
+        return "redirect:/ruangan/list";
+    }
+
+    @PostMapping("/ruangan/import")
+    public String importRuangan(MultipartFile file) throws Exception {
+        ruanganCsvService.mappingDataRuangan(file);
         return "redirect:/ruangan/list";
     }
 
