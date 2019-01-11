@@ -5,11 +5,11 @@
  */
 package com.artivisi.kampus.latihan.controller;
 
-import org.springframework.data.web.PageableDefault;
 import com.artivisi.kampus.latihan.dao.DosenDao;
 import com.artivisi.kampus.latihan.entity.Dosen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
