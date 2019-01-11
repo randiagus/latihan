@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!--<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+    </body>
+</html>-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout"
+      th:with="activeTab='DOSEN'">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <!--content-header-->
+            <section class="content-header">
+                <h1>
+                    Form
+                    <small>list Dosen</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a><i class="fa fa-dashboard"></i> Dosen</a></li>
+                    <li>Form</li>
+                </ol>
+            </section>
+            <!-- main content-->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                                <h4><i class="fa fa-ban"></i>error!</h4>
+                                <span th:text="${errorMessage}"></span>
+                            </div>
+                            <form th:action="@{/dosen/form}" th:object="${dosen}" method="post">
+                                <input type="hidden" th:field="*{id}">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label>Kode Dosen</label>
+                                        <input type="text" class="form-control" th:field="*{kode}" required autocomplete="off">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Nama Dosen</label>
+                                        <input type="text" class="form-control" th:field="*{nama}" required autocomplete="off">
+                                    </div>
+                                    <div class="form-group">
+                                        <p><label>Jenis Kelamin</label></p>
+                                        <label class="radio-inline">
+                                            <input type="radio" th:field="*{jenisKelamin}" value="PRIA">LAKI-LAKI
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" th:field="*{jenisKelamin}" value="WANITA">PEREMPUAN
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>

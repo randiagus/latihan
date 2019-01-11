@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!--<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+    </body>
+</html>-->
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout"
+      th:with="activeTab='DOSEN'">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <!--content-header-->
+            <section class="content-header">
+                <h1>
+                    list
+                    <small>list Dosen</small>
+                </h1>
+                <br>
+                <ol class="breadcrumb">
+                    <li><a><i class="fa fa-dashboard"></i> Dosen</a></li>
+                    <li>list</li>
+                </ol>
+            </section>
+            <!-- main content-->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <a th:href="@{/dosen/form}" class="btn btn-primary">Tambah Dosen</a>
+                        <br>
+                        <br>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <form th:action="@{/dosen/list}" method="get">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <input type="text" name="kode" th:value="${param.kode}" class="form-control" autocomplete="off">
+                                                <span class="input-group-btn">
+                                                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <br>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th class="col-md-2">Kode Dosen</th>
+                                            <th class="col-md-6">Nama Dosen</th>
+                                            <th class="col-md-2">Jenis Kelamin</th>
+                                            <th><center>Aksi</center></th>
+                                        </tr>
+                                        <tr th:each="data : ${datas}">
+                                            <td th:text="${data.kode}">002</td>
+                                            <td th:text="${data.nama}">003</td>
+                                            <td th:text="${data.jenisKelamin}">004</td>
+                                            <td>
+                                        <center>
+                                            <a th:href="@{/dosen/form(id = ${data.id})}" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></a>
+                                            <a th:href="@{/dosen/delete/} + ${data.id}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+                                        </center>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <div class="text-center" th:if="${not #lists.isEmpty(datas.content) and datas.totalPages &gt; 1}">
+                                    <nav>
+                                        <ul class="pagination" sd:pagination="full"></ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>

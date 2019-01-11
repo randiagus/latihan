@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!--<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+    </body>
+</html>-->
+
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout"
+      th:with="activeTab='MATAKULIAH'">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <!--content-header-->
+            <section class="content-header">
+                <h1>
+                    Form
+                    <small>list Mata Kuliah</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a><i class="fa fa-dashboard"></i> Mata Kuliah</a></li>
+                    <li>Form</li>
+                </ol>
+            </section>
+            <!-- main content-->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                                <h4><i class="fa fa-ban"></i>error!</h4>
+                                <span th:text="${errorMessage}"></span>
+                            </div>
+                            <form th:action="@{/matakuliah/form}" th:object="${mataKuliah}" method="post">
+                                <input type="hidden" th:field="*{id}">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label>Kode</label>
+                                        <input type="text" class="form-control" th:field="*{kode}" required autocomplete="off">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Nama</label>
+                                        <input type="text" class="form-control" th:field="*{nama}" required autocomplete="off">
+                                    </div>
+                                    <div class="form-group">
+                                        <p><label>Waktu</label></p>
+                                        <input type="date" required th:field="*{waktu}">
+                                    </div>
+                                    <div class="form-group">
+                                        <p><label>Dosen</label></p>
+                                        <select th:field="*{dosen}" required>
+                                            <option class="disabled" value="">Pilih Dosen</option>
+                                            <option th:each="dosen : ${listDosen}" th:value="${dosen.id}" th:text="${dosen.nama}">
+                                                
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <p><label>Ruangan</label></p>
+                                        <select th:field="*{ruangan}" required>
+                                            <option class="disabled" value="">Pilih Ruangan</option>
+                                            <option th:each="ruangan : ${listRuangan}" th:value="${ruangan.id}" th:text="${ruangan.kodeRuangan}">
+                                                
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>
